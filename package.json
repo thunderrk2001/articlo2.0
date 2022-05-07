@@ -1,0 +1,28 @@
+{
+    "name": "articles",
+    "version": "1.0.0",
+    "description": "articles webapp",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "\"ritik kumar\"",
+    "license": "ISC",
+    "dependencies": {
+        "bcrypt": "*",
+        "cloudinary": "*",
+        "cookie-parser": "*",
+        "cors": "*",
+        "dotenv": "*",
+        "ejs": "*",
+        "email-validator": "*",
+        "express": "*",
+        "jsonwebtoken": "*",
+        "mongoose": "*",
+        "multer": "*",
+        "multer-storage-cloudinary": "*",
+        "redis": "^4.0.6"
+
+    }
+}

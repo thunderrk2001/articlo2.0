@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Donegal+One&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            background-color: rgb(243, 243, 243)
+        }
+        
+        .autocomplete {
+            /*the container must be positioned relative:*/
+            position: relative;
+            display: inline-block;
+        }
+        
+        input {
+            border: 1px solid transparent;
+            background-color: #ffffff;
+            padding: 10px;
+            font-size: 16px;
+        }
+        
+        input[type=text] {
+            background-color: #ffffff;
+            width: 100%;
+            border-radius: 10px;
+        }
+        
+        input[type=submit] {
+            border-radius: 10px;
+            background-color: rgb(123, 131, 123);
+            color: #fff;
+        }
+        
+        .autocomplete-items {
+            position: absolute;
+            border: 1px solid #d4d4d4;
+            border-bottom: none;
+            border-top: none;
+            z-index: 99;
+            /*position the autocomplete items to be the same width as the container:*/
+            top: 100%;
+            left: 0;
+            right: 0;
+        }
+        
+        .autocomplete-items div {
+            padding: 10px;
+            cursor: pointer;
+            background-color: #fff;
+            border-bottom: 1px solid #d4d4d4;
+        }
+        
+        .autocomplete-items div:hover {
+            /*when hovering an item:*/
+            background-color: #e9e9e9;
+        }
+        
+        .autocomplete-active {
+            /*when navigating through the items using the arrow keys:*/
+            background-color: rgb(149, 231, 138) !important;
+            color: #ffffff;
+        }
+        
+        .h1 {
+            font-size: 22px;
+            letter-spacing: 0.5px;
+            font-weight: bold;
+            font-family: 'Donegal One', serif;
+            color: black;
+        }
+        
+        .items {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            z-index: 2;
+            background: linear-gradient( 40deg, transparent, rgb(222 225 221), rgb(239 239 239), rgb(236 236 236));
+            width: 100%;
+            padding: 10px;
+        }
+        
+        .item:hover {
+            color: green;
+        }
+        
+        .item {
+            cursor: pointer;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: rgb(34, 122, 7);
+            font-weight: bold;
+        }
+        
+        .bgname {
+            border-radius: 5px;
+            margin: 2px;
+            padding: 5px;
+            letter-spacing: 0.7px;
+            color: #043604;
+        }
+        
+        .dateTime {
+            color: rgb(156, 153, 153);
+        }
+        
+        .bgSet {
+            border: none;
+            background-color: #e8e8e8;
+            box-shadow: 0px 0px 1px rgb(21 85 122);
+        }
+        
+        .pageNumbering {
+            display: flex;
+            flex-wrap: wrap;
+            flex-flow: wrap;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 100px;
+        }
+        
+        .pageCount {
+            text-decoration: none;
+            padding-left: 4px;
+            padding-right: 4px;
+            border-radius: 2px;
+            margin: 3px;
+            color: rgb(0, 0, 0);
+            border: 1px solid grey;
+        }
+        
+        @media only screen and (max-width:400px) {
+            .h1 {
+                font-size: 17px;
+            }
+            .bgname {
+                font-size: 12px;
+            }
+            .dateTime {
+                font-size: 12px;
+            }
+            .mx-5 {
+                margin: 0.5rem !important;
+            }
+            .pageNumbering {
+                padding: 5px;
+            }
+        }
+        
+        @media only screen and ( max-width:600px) and ( min-width:401px) {
+            .h1 {
+                font-size: 17px;
+            }
+            .bgname {
+                font-size: 12px;
+            }
+            .dateTime {
+                font-size: 12px;
+            }
+            .mx-5 {
+                margin: 0.5rem !important;
+            }
+            .pageNumbering {
+                padding: 5px;
+            }
+        }
+    </style>
+</head>
+<div class="container">
+    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+        <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+            <img>
+        </a>
+        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+            <li><a href="/" class="nav-link px-2 link-secondary">Home</a></li>
+
+
+            <li><a href="/myArticles" class="nav-link px-2 link-dark">My Artilces</a></li>
+            <li><a href="/writeArticle" class="nav-link px-2 link-dark">Create</a></li>
+
+        </ul>
+        <div class="col-md-3 text-end">
+            <% if(!signedState){ %>
+                <button type="button" id="signUp-btn" class="btn btn-success ">Sign-up</button>
+                <button type="button" id="signIn-btn" class="btn btn-outline-success ">Sign-in</button>
+                <% }else{ %>
+                    <div class="flex_profile" style="display: flex; align-items: center;">
+                        <div style="text-align: center;">
+                            <%=name  %>
+                        </div>
+                        <form action="/signOut" method="GET">
+                            <button type="submit" class="btn mx-1" style="background-color: black;color: white;">
+                        Sign out
+                    </button>
+                        </form>
+                    </div>
+
+                    <% } %>
+
+        </div>
+
+    </header>
+</div>
+
+<form autocomplete="off" action="/search/display" style="display: flex; align-items: center;
+justify-content: center; margin-bottom: 10px;" method="GET">
+    <div style="width: 60%;"></div>
+    <div class="autocomplete mx-1" style="width:200px;">
+        <input id="myInput" type="text" name="title" placeholder="Search">
+        <div class="items" id="items">
+
+
+
+        </div>
+    </div>
+    <button type="submit" class="btn" style="background: rgb(146 ,170 ,215); color: white;">Go</button>
+</form>
+<% if(search){ %>
+    <div class="flexSearch mb-2" style="display: flex; justify-content: center; flex-flow: wrap;">
+        <div style="font-size: 20px; font-weight: 600; color: grey;"> Showing Result For:</div>
+        <div style="width: 5px;"></div>
+        <div class="youSearched" style="color: rgb(255, 255, 255); display: flex; align-items: center;
+        background-color: #eed187;font-family: monospace; padding: 2px;">
+            <%=query  %>
+        </div>
+    </div>
+
+    <% } %>
+        <div class="list-group mx-5">
+            <% for(var i=0;i<json_list.length;i++) {
+        var articlePath=`/preview/${json_list[i]._id}`
+        %>
+                <a href="<%=articlePath %>" class="list-group-item list-group-item-action flex-column align-items-start mb-3
+        bgSet">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1 h1">
+                            <%=json_list[i].title  %>
+                        </h5>
+                        <small class="dateTime"> <%=json_list[i].dateTime %></small>
+                    </div>
+
+                    <small class="bgname"><%=json_list[i].userName %> </small>
+                </a>
+
+                <% } %>
+
+        </div>
+        <div class="pageNumbering">
+            <%for(var i=1;i<=size;i++) {
+                if(!search)
+        var path=`/page/${i}`
+        else
+        var path=`/search/display?title=${query}&page=${i}`
+        if(current==i){
+        %>
+                <div class="pageCount" data-uid="<%=path%>" style="background: rgb(195, 235, 162);">
+                    <%=i%>
+                </div>
+                <% } else{ %>
+
+                    <a href="<%=path %>" class="pageCount">
+                        <%= i  %>
+                    </a>
+                    <%} } %>
+
+        </div>
+
+        <body>
+
+            <script type="text/javascript" src="/homePage.js"></script>
+        </body>
+
+</html>

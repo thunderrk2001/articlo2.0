@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        .flex {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            padding: 30px;
+            margin: auto;
+        }
+        
+        .bg-secondary {
+            background-color: #c8cbce!important
+        }
+        
+        .flex-2 {
+            display: flex;
+            flex-flow: row;
+            flex-wrap: wrap;
+        }
+        
+        .oList {
+            width: 40px;
+            background-size: cover;
+            background-position: center;
+            background-image: url("https://static.thenounproject.com/png/1107454-200.png");
+        }
+        
+        .image {
+            display: block;
+            margin: auto;
+            max-width: 60%;
+            height: auto;
+            width: auto/9;
+            border-radius: 20px;
+        }
+        
+        .finalButtons {
+            display: flex;
+            flex-wrap: wrap;
+            flex-flow: wrap;
+            padding: 5px;
+            justify-content: space-between;
+        }
+        
+        #rk {
+            display: block;
+            width: 80%;
+            margin: auto;
+        }
+        
+        .uList {
+            padding: 15px 26px;
+            background-size: cover;
+            background-position: center;
+            background-image: url("https://static.thenounproject.com/png/2191818-200.png");
+        }
+        
+        .editor {
+            display: block;
+            border: 2px solid black;
+            overflow-y: scroll;
+            height: 20rem;
+            padding: 20px;
+            line-height: 2.2;
+            font-family: 'Lora', serif;
+        }
+        
+        .bg-light {
+            background-color: #f0f4f8!important;
+        }
+        
+        .control-overflow {
+            overflow: hidden;
+            width: 60px;
+            height: 40px;
+        }
+        
+        .dot1 {
+            width: 15px;
+            height: 15px;
+            border-radius: 15px;
+            animation: dot1 infinite 1s alternate;
+            background-color: rgb(188, 209, 188);
+        }
+        
+        .dot2 {
+            width: 15px;
+            height: 15px;
+            border-radius: 15px;
+            animation: dot2 infinite 1s alternate;
+            background-color: rgb(188, 209, 188);
+        }
+        
+        .dot3 {
+            width: 15px;
+            height: 15px;
+            border-radius: 15px;
+            animation: dot3 infinite 1s alternate;
+            background-color: rgb(188, 209, 188);
+        }
+        
+        @keyframes dot3 {
+            0% {}
+            100% {
+                transform: translateX(-90%);
+            }
+        }
+        
+        @keyframes dot1 {
+            0% {}
+            100% {
+                transform: translateX(90%);
+            }
+        }
+        
+        body {
+            background-color: rgb(247, 247, 247);
+        }
+    </style>
+</head>
+
+
+<body>
+    <div class="main">
+        <div class="main-content">
+            <div class="container">
+                <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+                    <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+                        <img>
+                    </a>
+
+                    <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+                        <li><a href="/" class="nav-link px-2 link-secondary">Home</a></li>
+                        <li><a href="/myArticles" class="nav-link px-2 link-secondary">My Artilces</a></li>
+                        <li>
+                            <div href="" class="nav-link px-2 link-dark" onclick="return false">Create</div>
+                        </li>
+
+                    </ul>
+
+                    <div class="col-md-3 text-end">
+                        <div class="name">
+                            <%= name %>
+                        </div>
+
+                    </div>
+                </header>
+            </div>
+
+
+            <div class="flex">
+                <textarea placeholder="Title" id="title" class="form-control form-control-lg mb-2"><%=data.title  %> </textarea>
+                <div style="align-items: center; text-align: center; color: red; visibility: hidden;" id="titleMessage">Title is too small</div>
+                <div class="flex-2">
+                    <button type="button" class="btn mx-1 mb-1 bg-light control-overflow" id="bold">BOLD</button>
+                    <button type="button" id="italic" name="italic" class="btn mx-1 mb-1 bg-light  control-overflow ">Italic</button>
+                    <button type="button" id="underline" name="underline" class="btn mx-1 mb-1 bg-light  control-overflow" style="width: 130px;">UnderLine</button>
+                    <button type="button" id="font7" name="7" class="btn mx-1 mb-1 bg-light  control-overflow">H1</button>
+                    <button type="button" id="font5" name="5" class="btn mx-1 mb-1 bg-light  control-overflow">H2</button>
+                    <button type="button" id="font3" name="3" class="btn mx-1 mb-1 bg-secondary  control-overflow">H3</button>
+                    <button type="button" id="insertUnorderedList" class="btn mx-1 mb-1 bg-light uList  control-overflow"></button>
+                    <button type="button" id="insertorderedList" name="insertorderedList" class="btn mx-1 mb-1 bg-light oList  " style="overflow: hidden; height: 40px;"></button>
+
+                    <select class=" btn mx-2 bg-light mb-1" id="justify" name="justifyContent">
+             <option value="0" selected="selected">left</option>
+             <option value="1">right</option>
+             <option value="2">center</option>
+            </select>
+                    <select class=" btn bg-light mb-1" id="color" name="color">
+    <option value="0" selected="selected">Black</option>
+    <option value="1">Yellow</option>
+    <option value="2">Green</option>
+    <option value="3">Magenta</option>
+
+  </select>
+                    <button type="button" class="btn bg-light mx-2" style="overflow:hidden;width: 130px; height: 40px; " data-mdb-toggle="modal" data-mdb-target="#staticBackdrop">
+                   Insert Image
+                </button>
+                </div>
+                <div class="editor px-3 pt-4" contenteditable="true">
+                    <%-data.article%>
+                </div>
+            </div>
+            <div class="finalButtons">
+                <button type="button" id="preview-btn" data-uid="<%=id%>" disabled class="btn  bg-success btn-primary  btn-lg btn-block " style="width: 130px; overflow: hidden; height: 50px;">Preview</button>
+                <button type="button" id="submit-btn" data-uid="<%=id%>" disabled class="btn bg-success  btn-primary btn-lg btn-block" style="width: 130px; overflow: hidden; height: 50px;">Update </button>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="modal fade" id="staticBackdrop" data-mdb-backdrop="static" data-mdb-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Upload and Insert Image</h5>
+                    <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body"><input type="file" id="image" style=" width: min-content;" accept="image/*" />
+                    <button type="button" id="load" class="btn mx-1 mb-1 bg-light " style="overflow:hidden;width: 130px; height: 40px; ">upoad image</button>
+                    <div class="under"><button class="btn bg-secondary  mt-2" id="btn_showImages" style="overflow: hidden; width: 100%;
+                    height: 40px;"> Show Uploaded Images</button></div>
+                    <div id="messageImage" style="text-align: center; color: Red;">Selected Image size is greater than 200kb So cant upload it</div>
+                    <div style="font-weight: 700;">Click On Image to add:</div>
+                    <div class="loadedImages" id="loadedImages">
+                        <div class="row" id="album">
+                            <div id="loadingDots" style="display: none;justify-content: center; ">
+                                <div class="dot1 mx-2"></div>
+                                <div class="dot2 mx-2"></div>
+                                <div class="dot3 mx-2"></div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div id="sending" style="text-align: center;visibility: hidden;font-weight: 700;color: rgb(21, 61, 19); font-size: 40px;z-index: 10; position: absolute;top: 45%; left: 40%; ">Sending Update... </div>
+    <!-- MDB -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.js"></script>
+
+    <script type="text/javascript" src="/update.js">
+    </script>
+
+</body>
+
+</html>

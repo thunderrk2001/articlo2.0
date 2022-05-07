@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>preview</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<style>
+    * {
+        margin: 0px;
+        padding: 0px;
+    }
+    
+    .image {
+        display: block;
+        margin: auto;
+        max-width: 70%;
+        height: auto;
+        width: auto/9;
+        padding: 20px;
+        border-radius: 30px;
+    }
+    
+    .main {
+        display: flex;
+        flex-wrap: wrap;
+        flex-flow: row;
+        word-wrap: break-word;
+        width: 100%;
+        justify-content: space-evenly !important;
+        align-items: center;
+    }
+    
+    .space {
+        display: block;
+        width: 100px !important;
+        height: 100px !important;
+    }
+    
+    .title {
+        display: flex;
+        margin-top: 0px;
+        margin-bottom: 10px;
+        padding: 0px 50px;
+        font-family: 'Lato', sans-serif;
+        font-size: 60px;
+        font-weight: bold;
+    }
+    
+    .ele {
+        display: flex;
+        flex-flow: wrap;
+        width: 100%;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+    
+    .content {
+        display: flex;
+        padding: 0px;
+        width: 100%;
+        line-height: 2.2;
+        flex-flow: wrap;
+        justify-content: center;
+        word-wrap: break-word;
+        flex-wrap: wrap;
+        font-family: "Lora", serif
+    }
+    
+    @media only screen and (max-width:600px) {
+        .ele {
+            margin: auto;
+            width: 100% !important;
+        }
+        .space {
+            display: block;
+            width: 10px !important;
+            height: 100px !important;
+        }
+        .title {
+            font-size: 30px;
+        }
+        .image {
+            padding: 2px;
+            width: 500px;
+        }
+    }
+    
+    @media only screen and (max-width:1050px) {
+        .main {
+            width: fit-content;
+        }
+        .title {
+            font-size: 35px;
+        }
+        .content {
+            width: fit-content;
+            font-family: 'Lora', serif;
+        }
+        .ele {
+            max-width: 100% !important;
+            margin: auto !important;
+        }
+        .space {
+            display: block;
+            width: 50px !important;
+            height: 100px !important;
+        }
+    }
+</style>
+
+<body>
+
+
+    <div class="title" id="title">How to make fragments with interfaces and classses and may more things</div>
+    <div class="main" data-uid="<%=preview%>">
+        <% if(preview!="main_preview") {%>
+            <div id="id2" data-id="<%=id  %>">
+                <% } %>
+            </div>
+            <div class="space"></div>
+            <div class="content">
+
+
+            </div>
+            <div class="space"></div>
+
+    </div>
+    <script>
+        window.addEventListener("load", () => {
+            var data = ""
+            var title = ""
+            if (document.querySelector(".main").getAttribute("data-uid") != "main_preview") {
+                var id = document.getElementById("id2").getAttribute("data-id")
+                data = localStorage.getItem(`article_data_reject_edit${id}`)
+                title = localStorage.getItem(`title_reject_edit${id}`)
+
+            } else {
+                data = localStorage.getItem("article_data")
+                title = localStorage.getItem("title")
+
+            }
+
+            document.getElementById("title").innerText = title
+            var ele = document.createElement("div")
+
+            ele.style.width = "900px"
+
+            ele.innerHTML = data
+            ele.className = "ele"
+            ele.style.wordWrap = "word-break"
+            ele.style.display = "block"
+            ele.style.overflowWrap = "word-break"
+            document.querySelector(".content").appendChild(ele)
+        })
+    </script>
+</body>
+
+
+</html>
