@@ -12,5 +12,6 @@ __Front end__- `Html`, `Css`, `Java Script`(pure).
 4.  Pagination.
 5.  Keep track of your uploaded articles `(pending,rejected,accepted)`.
 6.  Update your own Accepted articles.
+7.  Rate Limiting using redis.
 
 __The articles are being checked by admin portal which has their own functionalities__.
