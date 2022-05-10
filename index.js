@@ -43,12 +43,12 @@ let rateLimiter = async(req, res, next) => {
     if (count == null) {
         try {
             await redisClient.set(ip, '0')
-            await redisClient.expire(ip, 4)
+            await redisClient.expire(ip, 1)
         } catch (e) {
             console.log(e)
         }
 
-    } else if (count <= "2") {
+    } else if (count <= "20") {
 
         await redisClient.incr(ip)
     } else {

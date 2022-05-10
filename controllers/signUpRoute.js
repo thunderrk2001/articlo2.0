@@ -34,8 +34,7 @@ router.post("/signUp", async(req, res) => {
                         var token = jwt.sign({ "token": userDataId }, process.env.bcryptHash);
                         res.status(200).cookie("token", token, {
                             httpOnly: true,
-                            secure: true,
-                            sameSite: "strict"
+
                         })
                         res.send({
                             "message ": "success"
