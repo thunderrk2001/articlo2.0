@@ -23,6 +23,5 @@
         "multer": "*",
         "multer-storage-cloudinary": "*",
         "redis": "^4.0.6"
-
     }
 }
