@@ -11,10 +11,24 @@ if (document.getElementById("myInput").value == "") {
     document.getElementById("items").innerHTML = ""
     document.getElementById("items").style.visibility = "hidden"
 }
-document.getElementById("myInput").addEventListener("input", async() => {
+
+function debounceCall() {
+    let timer, context;
+    return function(value) {
+        context = this;
+        clearTimeout(timer)
+        timer = setTimeout(() => {
+            console.log(context)
+            fetchSearchQuery.apply(context, [value])
+        }, 400)
+    }
+}
+const callSearch = debounceCall()
+async function fetchSearchQuery(value) {
     document.getElementById("items").innerHTML = ""
     document.getElementById("items").style.visibility = "visible"
-    let val = document.getElementById("myInput").value
+    let val = value
+    console.log(`fetching ${val} ....`)
     const rawRes = await fetch("/search", {
         method: 'POST',
         headers: {
@@ -45,6 +59,7 @@ document.getElementById("myInput").addEventListener("input", async() => {
 
         })
     }
-
-
+}
+document.getElementById("myInput").addEventListener("keyup", (e) => {
+    callSearch(e.target.value)
 })
