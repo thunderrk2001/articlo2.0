@@ -44,9 +44,11 @@ async function fetchSearchQuery(value) {
         document.getElementById("items").innerHTML = ""
         if (arr.length == 0) {
             var e = document.createElement("div")
+            e.id = "not_found_div"
             e.innerText = " Not Found 😞"
             e.style.color = "#ababac"
             e.style.textAlign = "center"
+            e.style.display = 'display'
             document.getElementById("items").appendChild(e)
         }
         arr.forEach((ele) => {
@@ -61,5 +63,12 @@ async function fetchSearchQuery(value) {
     }
 }
 document.getElementById("myInput").addEventListener("keyup", (e) => {
-    callSearch(e.target.value)
+    if (e.target.value == "") {
+        if (document.getElementById("items") != undefined) {
+            document.getElementById("items").style.display = 'none'
+        }
+    } else {
+        document.getElementById("items").style.display = 'flex'
+        callSearch(e.target.value)
+    }
 })
