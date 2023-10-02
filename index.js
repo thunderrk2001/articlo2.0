@@ -2,7 +2,7 @@ const express = require("express");
 require('dotenv').config();
 const app = express();
 const redis = require('redis');
-const port = process.env.PORT || 5500;
+const port = 5500 || 5500;
 const cors = require("cors");
 var cookieParser = require('cookie-parser');
 const jwt = require("jsonwebtoken");
@@ -78,6 +78,23 @@ var allowCrossDomain = function(req, res, next) {
 app.use(allowCrossDomain)
 app.use(cors())
 app.use(rateLimiter)
+
+
+app.use((req,res,next)=>{
+ const path = req.path;
+ console.log(`Request ${req.method} (${path}) `);
+ let originalSend=res.send;
+
+ res.send=function(body){
+  console.log(`Response ${req.method} ${res.statusCode}  (${path}) `);
+  originalSend.call(this,body);
+ }
+
+ next();
+
+});
+
+
 app.use(home_route)
 app.use(image_rt)
 app.use(signIn)
@@ -102,6 +119,6 @@ app.use((req, res, next) => {
     res.status(404).render("./errorView.ejs", { error: "It is Pointing to singularity.." })
 });
 app.listen(port, (err) => {
-    console.log("listening")
+    console.log("listening at port: ",port );
 
 });
