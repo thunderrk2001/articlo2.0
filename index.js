@@ -114,6 +114,9 @@ app.get("/signIn", checker, (req, res) => {
 app.get("/signUp", checker, (req, res) => {
         res.render("./signUp.ejs", )
     })
+app.get("/test",(req,res)=>{
+    res.send("done.....");
+});
     //If route is not present in above roots
 app.use((req, res, next) => {
     res.status(404).render("./errorView.ejs", { error: "It is Pointing to singularity.." })
