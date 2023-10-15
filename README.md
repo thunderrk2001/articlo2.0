@@ -1,4 +1,4 @@
-# Articlo [Live](http://articlo2.centralindia.cloudapp.azure.com)
+# Articlo 
 A web app (generally for students) where they can post quality articles which  helps other students to  find content related to any knowledgeable stuff.\
 \
 __No sql Database__ - `Mongodb`.\
